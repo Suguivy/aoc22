@@ -12,5 +12,5 @@ part1 = getMarker 4
 part2 :: String -> String
 part2 = getMarker 14
 
-getMarker n xs = show . (+n) . length . takeWhile ((<n) . size . fromList) $ scanl (\c x -> tail c ++ [x]) first rest
-    where (first, rest) = splitAt n xs
+getMarker :: Int -> String -> String
+getMarker n = show . (+n) . length . takeWhile ((<n) . size . fromList) . uncurry (scanl (\ac x -> tail ac ++ [x])) . splitAt n
